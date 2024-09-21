@@ -28,7 +28,33 @@ class GuestController extends Controller
      */
     public function store(Request $request)
     {
+        // dump($request->all());
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'message' => 'required|string|max:255',
+            'email' => 'email|string|max:255',
+            'phone_number' => 'string|max:13',
+        ]);
 
+        if ($request->hasFile('avatar')) {
+            $request->validate([
+                'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $imagePath = $request->file('avatar')->store('public/images');
+
+            $validated['avatar'] = $imagePath;
+        }
+
+        $guest = Guest::create([
+            'name' => $validated['name'],
+            'message' => $validated['message'],
+            'email' => $validated['email'],
+            'phone_number' => $validated['phone_number'],
+            'avatar' => $validated['avatar'] ?? null,
+        ]);
+
+        return $guest;
     }
 
     /**
