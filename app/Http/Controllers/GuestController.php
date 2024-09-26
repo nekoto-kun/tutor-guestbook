@@ -12,7 +12,9 @@ class GuestController extends Controller
      */
     public function index()
     {
-        return view('guests.index');
+        // $guests = Guest::all();
+        $guests = Guest::paginate(10);
+        return view('guests.index', compact('guests'));
     }
 
     /**
@@ -62,7 +64,7 @@ class GuestController extends Controller
      */
     public function show(Guest $guest)
     {
-        return view('guests.show');
+        return view('guests.show', compact('guest'));
     }
 
     /**
