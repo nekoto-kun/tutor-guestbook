@@ -48,7 +48,7 @@ class GuestController extends Controller
             $validated['avatar'] = $imagePath;
         }
 
-        $guest = Guest::create([
+        Guest::create([
             'name' => $validated['name'],
             'message' => $validated['message'],
             'email' => $validated['email'],
@@ -56,7 +56,7 @@ class GuestController extends Controller
             'avatar' => $validated['avatar'] ?? null,
         ]);
 
-        return $guest;
+        return redirect()->route('guests.index')->with('success', 'Guest added successfully.');
     }
 
     /**
