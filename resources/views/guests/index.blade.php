@@ -28,6 +28,7 @@
                     <th scope="col">Phone Number</th>
                     <th scope="col">Created At</th>
                     <th scope="col">Updated At</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,6 +45,19 @@
                         <td>{{ $guest->phone_number }}</td>
                         <td>{{ $guest->created_at }}</td>
                         <td>{{ $guest->updated_at }}</td>
+                        <td>
+                            <a href="{{ route('guests.edit', $guest) }}" class="btn btn-primary btn-sm">
+                                Edit
+                            </a>
+                            <form action={{ route('guests.destroy', $guest) }} method="POST" class="d-inline-block">
+                                @method('DELETE')
+                                @csrf
+
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 @empty
                     <tr>
