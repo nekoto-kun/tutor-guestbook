@@ -20,3 +20,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::resource('/guests', GuestController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

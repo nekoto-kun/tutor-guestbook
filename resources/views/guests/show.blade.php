@@ -1,8 +1,8 @@
-@extends('layouts.template')
+@extends('layouts.app')
 
 @section('title', "Guest: $guest->name")
 
-@section('body')
+@section('content')
 
 @if ($guest->avatar)
     <img src="{{ $guest->avatar_url }}" class="rounded img-thumbnail mx-auto d-block my-3"/>

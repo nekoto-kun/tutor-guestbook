@@ -1,8 +1,8 @@
-@extends('layouts.template')
+@extends('layouts.app')
 
 @section('title', 'Update Guest')
 
-@section('body')
+@section('content')
 
     <div class="mt-4 p-5 bg-black text-white rounded">
         <h1>Update Existing Guest</h1>
