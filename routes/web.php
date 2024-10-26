@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,7 @@ Route::resource('/guests', GuestController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/biodata', [BiodataController::class, 'show'])->name('biodata.show');
+Route::get('/biodata/edit', [BiodataController::class, 'edit'])->name('biodata.edit');
+Route::put('/biodata/edit', [BiodataController::class, 'update'])->name('biodata.update');
